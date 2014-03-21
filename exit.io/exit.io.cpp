@@ -6,7 +6,7 @@
 #include <climits>
 #include <string>
 #include <iostream>
-
+#include <Windows.h>
 using namespace std;
 
 void mayPrintUsageHelp(int argc, _TCHAR* argv[]){
@@ -37,6 +37,9 @@ int choice(int argc, _TCHAR* argv[]){
 			if (parameter.compare(_T("stdout")) == 0){
 				wstring content(argv[2]);
 				wcout << content << endl;
+			} else if ( parameter.compare(_T("winmsg")) == 0){
+				wstring content(argv[2]);
+				MessageBox(NULL,content.c_str(), _T("Msg"), MB_OK);
 			}
 		}
 	default:
