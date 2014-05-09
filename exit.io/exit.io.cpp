@@ -16,6 +16,8 @@ void mayPrintUsageHelp(int argc, _TCHAR* argv[]){
 	* Here are the possible options for the io command
 	*   - "time" > this will return the current time as status code (ex: io.exe time)
 	*   - "stdout [text]" > this will output the text to the standard console (ex: io.exe stdout "hello world") 
+	*	- "stderr [text]" > this will output the text to the standard error (ex: io.exe stderr "hello world")
+	*   - "exitat [milliseconds]" > this will run the program and exit at specified milliseconds
 	*/
 
 }
@@ -25,7 +27,7 @@ int choice(int argc, _TCHAR* argv[]){
 		{
 			wstring parameter(argv[1]);
 			if (parameter.compare(_T("time")) == 0){
-				return time(NULL);// get the current time 
+				return (int)time(NULL);// get the current time 
 			} else {
 				return _tstoi(argv[1]);
 			}
@@ -37,7 +39,12 @@ int choice(int argc, _TCHAR* argv[]){
 			if (parameter.compare(_T("stdout")) == 0){
 				wstring content(argv[2]);
 				wcout << content << endl;
-			} else if ( parameter.compare(_T("winmsg")) == 0){
+			}
+			else if ( parameter.compare(_T("stderr")) == 0){
+				wstring content(argv[2]);
+				wcerr << content << endl;
+			}
+			else if ( parameter.compare(_T("winmsg")) == 0){
 				wstring content(argv[2]);
 				MessageBox(NULL,content.c_str(), _T("Msg"), MB_OK);
 			}
