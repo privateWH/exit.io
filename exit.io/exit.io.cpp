@@ -7,6 +7,7 @@
 #include <string>
 #include <iostream>
 #include <Windows.h>
+#include "arch\platformUtils.h"
 using namespace std;
 
 void mayPrintUsageHelp(int argc, _TCHAR* argv[]){
@@ -43,6 +44,10 @@ int choice(int argc, _TCHAR* argv[]){
 			else if ( parameter.compare(_T("stderr")) == 0){
 				wstring content(argv[2]);
 				wcerr << content << endl;
+			}
+			else if ( parameter.compare(_T("exitat")) == 0){
+				int msec = _tstoi(argv[2]);
+				platformUtils::sleep(msec);
 			}
 			else if ( parameter.compare(_T("winmsg")) == 0){
 				wstring content(argv[2]);
