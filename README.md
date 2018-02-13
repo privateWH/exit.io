@@ -25,3 +25,17 @@ P2 Input 1
 
 Concerns:
 Is mean P1 and P2 running in-order or out-of-order?
+
+
+---- Records:
+The input parameter is being repeated 3 times.
+
+txt-in-f-names(){
+	find . -type f -not -path "**/.git/**" -exec grep -lI "$1" {} \;
+}
+txt-in-f-preview(){
+	find . -type f -not -path "**/.git/**" -exec grep -HnI --color "$1" {} \;
+}
+
+
+txt-in-f-preview 'Individual weight loss results will vary.' && txt-in-f-names 'Individual weight loss results will vary.' | xargs replace 'Individual weight loss results will vary.' '' --
